@@ -1,1 +1,1 @@
-This is a template to start any python project. Includes anything a package needs to begin
+The algorithm is basically the same algorithm from scipy.
