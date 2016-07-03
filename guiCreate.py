@@ -3,9 +3,10 @@ from tkinter import *
 def runSimplex():
     global e
     string = e.get()
-    print(string, var)
-    global cs
-    print(cs.get())
+    print(string)
+    global TextArea
+    dasinput = TextArea.get("0.0",END)
+    print(dasinput)
 
 root = Tk()
 
@@ -32,9 +33,16 @@ Label(root, text="Type your constraints below:").pack(side=TOP, padx=15, pady=10
 # Entry that gets the constraints
 # Entry that gets the input
 cs = StringVar()
-cs = Text(root, height=10, width=50)
-cs.insert(INSERT, diary)
-cs.pack()
+#text = Text(root, height=10, width=50)
+#text.pack()
+
+TextArea = Text()
+ScrollBar = Scrollbar(root)
+ScrollBar.config(command=TextArea.yview)
+TextArea.config(yscrollcommand=ScrollBar.set)
+ScrollBar.pack(side=RIGHT, fill=Y)
+TextArea.pack(expand=YES, fill=BOTH)
+
 
 b = Button(root,text='Run Simplex',command=runSimplex)
 b.pack(side='bottom')
