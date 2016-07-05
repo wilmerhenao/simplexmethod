@@ -1,12 +1,20 @@
 from tkinter import *
+import ast as cp
+import re
 
 def runSimplex():
     global e
     string = e.get()
-    print(string)
+    print('objective function entered:', string)
     global TextArea
     dasinput = TextArea.get("0.0",END)
-    print(dasinput)
+    print('constraints as entered:', dasinput)
+    parseobjective(string)
+
+def parseobjective(obje):
+    newstr = re.sub('[* _]', '', obje)
+    tokenresult = re.split("([+-/*])", newstr)
+    print(tokenresult)
 
 root = Tk()
 
@@ -42,6 +50,7 @@ ScrollBar.config(command=TextArea.yview)
 TextArea.config(yscrollcommand=ScrollBar.set)
 ScrollBar.pack(side=RIGHT, fill=Y)
 TextArea.pack(expand=YES, fill=BOTH)
+
 
 
 b = Button(root,text='Run Simplex',command=runSimplex)
