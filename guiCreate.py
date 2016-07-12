@@ -14,6 +14,12 @@ def runSimplex():
 def parseobjective(obje):
     newstr = re.sub('[* _]', '', obje)
     tokenresult = re.split("([+-/*])", newstr)
+    # Catch all the expressions that have alphanumeric characters
+    for singletoken in tokenresult:
+        ischarac = re.search('[a-zA-Z]', singletoken)
+        if ischarac:
+            print('charac', ischarac)
+
     print(tokenresult)
 
 root = Tk()
@@ -32,6 +38,7 @@ var.set(1)
 # Entry that gets the input
 e = StringVar()
 e = Entry(root, width=40)
+e.insert(END, 'x + 3y -5*z')
 e.pack()
 e.focus_set()
 
